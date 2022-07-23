@@ -13,6 +13,12 @@ Laravel is becoming more and more popular and lots of web application are develo
 ```php
     SEO\SeoServiceProvider::class
 ``` 
+
+011. Add this line to AppServiceProvider. Since SEO is not deffered
+```php
+     $this->app->register(SeoServiceProvider::class);
+```
+
   
 02. Then Run
 ```php
