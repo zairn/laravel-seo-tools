@@ -16,6 +16,9 @@
         body {
             padding-top: 50px !important;
         }
+        .hidden{
+            display: none !important;
+        }
     </style>
     <!-- Custom styles for this template -->
     <link href="{{asset('css/dashboard.css')}}" type="text/css" rel="stylesheet">
@@ -49,7 +52,7 @@
     <div class="row">
         @include('seo::includes.sidebar')
 
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4" style="padding-bottom: 50px;">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 
                 <h1 class="h3">
