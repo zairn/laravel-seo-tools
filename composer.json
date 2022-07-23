@@ -1,5 +1,5 @@
 {
-  "name": "digitaldream/laravel-seo-tools",
+  "name": "airondev/laravel-seo-tools",
   "type": "library",
   "description": "Laravel Seo package for Content writer/admin/web master who do not know programming but want to edit/update SEO tags from dashboard",
   "keywords": [
@@ -8,7 +8,7 @@
     "SEO Tools",
     "Laravel SEO tools"
   ],
-  "homepage": "https://github.com/digitaldreams/laravel-seo-tools",
+  "homepage": "https://github.com/airondev/laravel-seo-tools",
   "license": "MIT",
   "authors": [
     {
