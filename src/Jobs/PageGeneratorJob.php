@@ -52,7 +52,7 @@ class PageGeneratorJob //implements ShouldQueue
                             $this->pageImage($page, $link['images']);
                         }
 
-                        if(isset($link['meta']){
+                        if(isset($link['meta'])){
                             $page->generateMeta($link['meta']);
                         }
                     }
