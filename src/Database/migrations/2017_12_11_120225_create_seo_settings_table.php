@@ -18,7 +18,7 @@ class CreateSeoSettingsTable extends Migration
             $table->string('label')->nullable();
             $table->string('key', 100)->unique()->index();
             $table->string('value')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             // either active or inactive
             $table->string('status')->default('active');
             $table->string('group')->nullable();
