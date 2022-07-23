@@ -25,9 +25,12 @@ class CreateSeoPagesTable extends Migration
             $table->string('object_id', 80)->nullable()->index();
             $table->string('robot_index', 50)->default('noindex')->nullable();
             $table->string('robot_follow', 50)->default('nofollow')->nullable();
-            $table->string('canonical_url')->nullable();
-            $table->string('title', 100)->nullable()->index();
-            $table->string('title_source', 100)->nullable()->index();
+            
+            $table->text('canonical_url')->nullable();
+
+
+            $table->string('title', 180)->nullable()->index();
+            $table->string('title_source', 180)->nullable()->index();
             $table->string('description', 180)->nullable();
             $table->string('description_source', 180)->nullable();
 
