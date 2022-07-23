@@ -15,8 +15,9 @@ use App\Policies\Seo\MetaTagPolicy;
 use App\Policies\Seo\PagePolicy;
 use App\Policies\Seo\SettingPolicy;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Contracts\Support\DeferrableProvider;
 
-class SeoServiceProvider extends ServiceProvider
+class SeoServiceProvider extends ServiceProvider implements DeferrableProvider
 {
     /**
      * The policies
