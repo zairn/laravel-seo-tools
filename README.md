@@ -4,7 +4,7 @@ Laravel is becoming more and more popular and lots of web application are develo
 ### Installation ###
 ```javascript
   "require": { 
-     "digitaldream/laravel-seo-tools": "1.*"
+     "airondev/laravel-seo-tools": "1.*"
 }
 ```
 #### Settings ###
@@ -90,3 +90,4 @@ Only way to inform search engine about your site or page is via Meta tags. There
 <img src="https://image.ibb.co/meMkYo/meta_tags.png" alt="meta_tags" border="0">
 This is simple. Isn't it?
 
+# laravel-seo-tools

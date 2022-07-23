@@ -33,6 +33,7 @@
 @section('content')
     <form method="get" class="m-form">
         <div class="row">
+            
             <div class="col-md-6">
                 <div class="form-group m-form__group">
                     <div class="input-group">
@@ -58,11 +59,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 text-right">
-                {!! $records->appends(['object'=>request('object'),'search'=>request('search')])->render() !!}
-            </div>
+            
         </div>
     </form>
+
     <div class="row">
         @foreach($records as $record)
             <div class="col-sm-6">
@@ -70,6 +70,9 @@
             </div>
         @endforeach
     </div>
+
     {!! $records->render() !!}
+
+    
     @include('seo::modals.page_upload')
 @endSection

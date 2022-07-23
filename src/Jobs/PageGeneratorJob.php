@@ -12,9 +12,9 @@ use SEO\Models\PageImage;
 use SEO\Models\Setting;
 use SEO\Contracts\LinkProvider;
 
-class PageGeneratorJob implements ShouldQueue
+class PageGeneratorJob //implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    // use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
      * Create a new job instance.
@@ -39,12 +39,11 @@ class PageGeneratorJob implements ShouldQueue
         foreach ($linkProviders as $linkProvider) {
 
             $obj = new $linkProvider;
+
             if ($obj instanceof LinkProvider) {
                 $links = $obj->all();
-
                 foreach ($links as $link) {
-                    $page = $this->page($link);
-
+                    $page = $this->page($link, $linkProvider);
                     if ($page->save()) {
                         $total++;
                         PageImage::where('page_id', $page->id)->delete();
@@ -92,27 +91,41 @@ class PageGeneratorJob implements ShouldQueue
      * @param $link
      * @return Page
      */
-    protected function page($link)
+    protected function page($link, $linkProvider)
     {
         $setting = new Setting();
 
-        $changeFrequency = $setting->getValueByKey('page_changefreq');
-        $priority = $setting->getValueByKey('page_priority');
+        $changeFrequency = $setting->getValueByKey('page_changefreq') ?? 'monthly';
+        $priority = $setting->getValueByKey('page_priority') ?? 0.5;
 
-        $path = $link['link'];
-        $object = isset($link['object']) ? $link['object'] : null;
-        $objectId = isset($link['object_id']) ? $link['object_id'] : null;
+        
+        $object =  $linkProvider;
+        $objectId = isset($link['id']) ? $link['id'] : null;
+        
         $page = Page::firstOrNew(['object' => $object, 'object_id' => $objectId]);
 
-        $page->path = $path;
-        $page->canonical_url = $path;
+        $page->object = $object;
+        $page->object_id = $objectId;
+        
+        $page->path = $link['link'];
+        $page->canonical_url = $link['link'];
+        
+
         $page->title_source = isset($link['title']) ? substr($link['title'], 0, 70) : '';
-        $page->description_source = isset($link['description']) ? substr($link['description'], 0, 150) : '';
+        $page->title = isset($link['title']) ? substr($link['title'], 0, 70) : '';
+        
+
+        $page->description_source = isset($link['overview']) ? substr($link['overview'], 0, 150) : '';
+        $page->description = isset($link['overview']) ? substr($link['overview'], 0, 150) : '';
 
         $page->created_at = isset($link['created_at']) ? $link['created_at'] : '';
         $page->updated_at = isset($link['updated_at']) ? $link['updated_at'] : '';
-        $page->change_frequency = !empty($changeFrequency) ? $changeFrequency : 'monthly';
-        $page->priority = (!empty($priority) && $priority < 1.1) ? $priority : 0.5;
+        
+        $page->robot_index = isset($link['robot_index']) ? $link['robot_index'] : 'index';
+        $page->robot_follow = isset($link['robot_follow']) ? $link['robot_follow'] : 'follow';
+        
+        $page->change_frequency = isset($link['change_frequency']) ? $link['change_frequency'] : $changeFrequency;
+        $page->priority =  isset($link['priority']) ? $link['priority'] :  $priority;
 
         return $page;
     }
