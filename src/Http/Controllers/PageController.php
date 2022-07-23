@@ -254,13 +254,12 @@ class PageController extends Controller
      */
     public function generate(Request $request)
     {
-        // $job = new PageGeneratorJob();
-        // // dd($job);
-        // $job->handle();
-        // return redirect()->route('seo::pages.index')->with(config('seo.flash_message'), ' Your request are in queue now. ');
-
-        dispatch(new PageGeneratorJob());
+        $job = new PageGeneratorJob();
+        $job->handle();
         return redirect()->route('seo::pages.index')->with(config('seo.flash_message'), ' Your request are in queue now. ');
+
+        // dispatch(new PageGeneratorJob());
+        // return redirect()->route('seo::pages.index')->with(config('seo.flash_message'), ' Your request are in queue now. ');
     }
 
     /**

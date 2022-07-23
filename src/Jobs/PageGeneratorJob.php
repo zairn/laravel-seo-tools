@@ -12,9 +12,9 @@ use SEO\Models\PageImage;
 use SEO\Models\Setting;
 use SEO\Contracts\LinkProvider;
 
-class PageGeneratorJob implements ShouldQueue
+class PageGeneratorJob //implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    // use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
      * Create a new job instance.
