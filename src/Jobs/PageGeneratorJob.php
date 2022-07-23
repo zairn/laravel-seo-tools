@@ -51,6 +51,10 @@ class PageGeneratorJob //implements ShouldQueue
                         if (isset($link['images']) && !empty($link['images']) && is_array($link['images'])) {
                             $this->pageImage($page, $link['images']);
                         }
+
+                        if(isset($link['meta']){
+                            $page->generateMeta($link['meta']);
+                        }
                     }
                 }
             }

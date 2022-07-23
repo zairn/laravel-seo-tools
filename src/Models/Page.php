@@ -197,6 +197,26 @@ class Page extends Model
         return $retArr;
     }
 
+
+    /**
+     * @param array $metaValues
+     * @return array
+     */
+    public function generateMeta($metaValues)
+    {
+        $retArr = [];
+        foreach ($metaValues as $property => $content) {
+            $seo_meta_tag_id = MetaTag::where('property', $property)->first()->id;
+            
+            $pageMeta = PageMetaTag::firstOrCreate(['seo_page_id' => $this->id, 'seo_meta_tag_id' => $seo_meta_tag_id]);
+            
+            $pageMeta->content = $content;
+            $pageMeta->save();
+            $retArr[] = $pageMeta;
+        }
+        return $retArr;
+    }
+
     /**
      * @param array $images
      * @return Collection
