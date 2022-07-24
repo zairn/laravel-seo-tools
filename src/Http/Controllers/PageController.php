@@ -119,16 +119,27 @@ class PageController extends Controller
      * @return Response
      */
     public function store(Store $request)
-    {
+    {   
+
+       
         $model = new Page;
         $model->fill($request->get('page'));
+
+        $tag = new Tag($model);
+        $tag->make()->save();
+
+        // dd($model);
+
+       // dd($tag );
 
         if ($model->save()) {
             $model->saveMeta(request()->get('meta', []));
             $model->saveMeta(Seo::upload(request()->file('meta',[]), $model));
+            
             $tag = new Tag($model);
             $tag->make()->save();
             session()->flash(config('seo.flash_message'), 'Page saved successfully');
+            
             return redirect()->route('seo::pages.index');
         } else {
             session()->flash(config('seo.flash_error'), 'Something is wrong while saving Page');

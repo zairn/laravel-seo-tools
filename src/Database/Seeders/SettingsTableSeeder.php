@@ -14,6 +14,8 @@ class SettingsTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        DB::table('seo_settings')->truncate();
         DB::table('seo_settings')->insert([
             [
                 'label' => 'Site Title',

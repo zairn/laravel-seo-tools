@@ -11,6 +11,8 @@ use SEO\Models\Page;
 use SEO\Models\PageImage;
 use SEO\Models\Setting;
 use SEO\Contracts\LinkProvider;
+use SEO\Tag;
+
 
 class PageGeneratorJob //implements ShouldQueue
 {
@@ -53,7 +55,9 @@ class PageGeneratorJob //implements ShouldQueue
                         }
 
                         if(isset($link['meta'])){
-                            $page->generateMeta($link['meta']);
+                            $page->saveMeta($link['meta'], []);
+                            $tag = new Tag($page);
+                            $tag->make()->save();
                         }
                     }
                 }
@@ -118,9 +122,7 @@ class PageGeneratorJob //implements ShouldQueue
         $page->title_source = isset($link['title']) ? substr($link['title'], 0, 70) : '';
         $page->title = isset($link['title']) ? substr($link['title'], 0, 70) : '';
         
-
-        $page->description_source = isset($link['overview']) ? substr($link['overview'], 0, 150) : '';
-        $page->description = isset($link['overview']) ? substr($link['overview'], 0, 150) : '';
+        $page->description = isset($link['description']) ? substr($link['description'], 0, 150) : '';
 
         $page->created_at = isset($link['created_at']) ? $link['created_at'] : '';
         $page->updated_at = isset($link['updated_at']) ? $link['updated_at'] : '';

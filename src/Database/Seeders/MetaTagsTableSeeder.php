@@ -13,7 +13,10 @@ class MetaTagsTableSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
+    {   
+
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        DB::table('seo_meta_tags')->truncate();
         DB::table('seo_meta_tags')->insert([
             [
                 'name' => 'author',
