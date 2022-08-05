@@ -17,7 +17,7 @@ use App\Policies\Seo\SettingPolicy;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Contracts\Support\DeferrableProvider;
 
-class SeoServiceProvider extends ServiceProvider implements DeferrableProvider
+class SeoServiceProvider extends ServiceProvider //implements DeferrableProvider
 {
     /**
      * The policies
