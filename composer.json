@@ -1,5 +1,5 @@
 {
-  "name": "airondev/laravel-seo-tools",
+  "name": "zairn/laravel-seo-tools",
   "type": "library",
   "description": "Laravel Seo package for Content writer/admin/web master who do not know programming but want to edit/update SEO tags from dashboard",
   "keywords": [
@@ -8,7 +8,7 @@
     "SEO Tools",
     "Laravel SEO tools"
   ],
-  "homepage": "https://github.com/airondev/laravel-seo-tools",
+  "homepage": "https://github.com/zairn/laravel-seo-tools",
   "license": "MIT",
   "authors": [
     {
@@ -19,7 +19,7 @@
     },
     {
       "name": "Aaron Aniebiet",
-      "email": "airondev@gmail.com",
+      "email": "aironde.v@gmail.com",
       "homepage": "http://www.tuhinbepari.com",
       "role": "Developer"
     }
